@@ -98,4 +98,5 @@ while (n_complete < NP):
 
 
 f = open("simulator_output.txt", "a")
-f.write(str(final_time) + " " + str(N) + " " + str(PPN) + " " + str(alpha1) + " " + str(alpha2) + " " + str(betan1) + " " + str(betan2) + " " + "\n")
+f.write(str(final_time) + " " + str(N) + " " + str(PPN) + " " + str(alpha1) + " " + str(alpha2) + " " + str(betan1) + " " + str(betan2) + "\n")
+f.close()
