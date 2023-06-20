@@ -12,3 +12,4 @@ if missing:
 import tkinter
 from tkinter import *
 
+exit()

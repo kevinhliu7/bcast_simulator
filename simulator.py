@@ -40,6 +40,7 @@ def run_algorithm():
 
 window = tkinter.Tk()
 window.title("Simulation Tool")
+window.resizable(False, False)
 
 text_extract_nodes = tkinter.StringVar(window)
 text_extract_ppn = tkinter.StringVar(window)
