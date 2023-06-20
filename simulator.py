@@ -5,7 +5,7 @@ import os
 import pkg_resources
 
 # install missing modules if needed, particularly important for installing tkinter if the user does not already have it
-required_modules = {"tk", "matplotlib", "numpy"}
+required_modules = {"tk"}
 installed_modules = {pkg.key for pkg in pkg_resources.working_set}
 missing = required_modules - installed_modules
 if missing:
