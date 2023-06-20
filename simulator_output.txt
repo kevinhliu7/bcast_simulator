@@ -1,2 +1,1 @@
-
-6.249999999999986
+final_time | N | PPN | alpha1 | alpha2 | beta1 | beta2

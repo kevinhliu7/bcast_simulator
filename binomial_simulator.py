@@ -1,4 +1,4 @@
-# set up imports
+# set up imports, not all are used
 import numpy as np
 import numpy.linalg as la
 import matplotlib.pyplot as plt
@@ -7,11 +7,12 @@ import more_itertools as mit
 import time
 import sys
 
-# setting up global vars
 
 if (len(sys.argv) < 7):
     print("You did not input enough cmd line arguments, expected: N, PPN, alpha1, alpha2, beta1, beta2")
     exit()
+
+# setting up global vars
 
 N = int(sys.argv[1]) # Number of Nodes
 PPN = int(sys.argv[2]) # Processes Per Node
@@ -97,4 +98,4 @@ while (n_complete < NP):
 
 
 f = open("simulator_output.txt", "a")
-f.write(str(final_time) + "\n")
+f.write(str(final_time) + " " + str(N) + " " + str(PPN) + " " + str(alpha1) + " " + str(alpha2) + " " + str(betan1) + " " + str(betan2) + " " + "\n")
