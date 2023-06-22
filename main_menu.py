@@ -2,6 +2,7 @@
 import os
 import sys
 import pkg_resources
+import subprocess
 
 required_modules = {"tk"}
 installed_modules = {pkg.key for pkg in pkg_resources.working_set}

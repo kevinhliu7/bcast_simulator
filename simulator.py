@@ -3,6 +3,7 @@ import numpy as np
 import math
 import os
 import pkg_resources
+import subprocess
 
 # install missing modules if needed, particularly important for installing tkinter if the user does not already have it
 required_modules = {"tk"}
