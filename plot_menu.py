@@ -41,7 +41,7 @@ plot_window = tkinter.Tk()
 plot_window.title("Simulation Tool")
 plot_window.resizable(False, False)
 
-main_label = tkinter.Label(plot_window, text="Choose X-Axis Variable: ")
+main_label = tkinter.Label(plot_window, text="X-Axis Variable: ")
 main_label.pack(padx = 10, pady = 10)
 main_label.configure(font = ("Ariel", 12, "bold"))
 

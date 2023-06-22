@@ -704,7 +704,7 @@ window.title("Simulation Tool")
 window.resizable(False, False)
 
 
-choose_label = tkinter.Label(window, text="Choose a Variable to Vary: ", justify=CENTER, anchor="w")
+choose_label = tkinter.Label(window, text="Variable to Vary: ", justify=CENTER, anchor="w")
 choose_label.configure(font = ("Ariel", 12, "bold"))
 choose_label.pack(padx=10, pady=5)
 

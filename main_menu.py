@@ -21,13 +21,13 @@ def call_vary():
     os.system("python3 simulator_vary.py")
     return
 def plotter():
-    os.system("python3 exit_menu_plot.py")
+    os.system("python3 plot_menu.py")
 
 window = tkinter.Tk()
 window.title("Main Menu")
 window.resizable(False, False)
 
-label = tkinter.Label(window, text = "Choose a Simulation Option: ", justify = CENTER, anchor = "w")
+label = tkinter.Label(window, text = "Options: ", justify = CENTER, anchor = "w")
 label.configure(font = ("Ariel", 12, "bold"))
 label.pack(padx = 10, pady = 5)
 
@@ -37,13 +37,13 @@ button_vary = tkinter.Button(window, text="Generate Many Data Points", command=c
 button_vary.pack(padx = 10, pady = 10)
 
 
-label_plot = tkinter.Label(window, text = "Plot Graph Using Simulation Data: ", justify=CENTER, anchor="w")
+label_plot = tkinter.Label(window, text = "Plot Graph: ", justify=CENTER, anchor="w")
 label_plot.configure(font=("Ariel", 12, "bold"))
 label_plot.pack(padx = 10, pady = 3)
 
 
-button_plot = tkinter.Button(window, text="Plot Graph", command=plotter, justify=LEFT)
-button_plot.pack(padx = 10, pady = 14)
+button_plot = tkinter.Button(window, text="Plot", command=plotter, justify=LEFT)
+button_plot.pack(padx = 10, pady = 8)
 
 
 window.mainloop()
