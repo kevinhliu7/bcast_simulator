@@ -6,6 +6,8 @@ import sys
 # unfortunately, this part is kind of hard coded, can fix this later if necessary
 # hierarchical runtime
 def calculate_time_hierarchical(B_inter, B_intra, a_inter, a_intra, m, N, PPN):
+    # print(math.ceil(math.log2(N)) * (B_inter * m + a_inter))
+    # return math.floor(math.log2(N))*(B_inter * m + a_inter) + math.floor(math.log2(PPN))*(B_intra * m + a_intra) # testing possible bug??
     return math.ceil(math.log2(N))*(B_inter * m + a_inter) + math.ceil(math.log2(PPN))*(B_intra * m + a_intra)
 
 ph = ""
@@ -34,8 +36,9 @@ try:
         y_values.append(float(parameters[0]))
         parameter_idx = parameter_to_idx[parameter_to_look_at]
         x_values.append(float(parameters[parameter_idx]))
+        # print(parameters)
         if (plot_hierarchical[ph]):
-            y_hierarchical.append(calculate_time_hierarchical(float(parameters[6]), float(parameters[5]), float(parameters[4]), float(parameters[3]), 1, int(parameters[1]), int(parameters[2])))
+            y_hierarchical.append(calculate_time_hierarchical(float(parameters[6]), float(parameters[5]), float(parameters[4]), float(parameters[3]), 0, int(parameters[1]), int(parameters[2])))
 
 
     plt.title("Time vs. " + parameter_to_look_at)
@@ -43,9 +46,12 @@ try:
     plt.ylabel("Time")
     plt.grid()
     if (plot_hierarchical[ph]):
-        plot = plt.plot(x_values, y_values, y_hierarchical)
+        plt.plot(x_values, y_hierarchical, label="Hierarchical")
+        plot = plt.plot(x_values, y_values, label = "Flat")
+        plt.legend()
     else:
-        plot = plt.plot(x_values, y_values)
+        plot = plt.plot(x_values, y_values, label="Flat")
+        plt.legend()
     plt.savefig('plot.png')
 
 

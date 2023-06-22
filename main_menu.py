@@ -21,7 +21,7 @@ def call_vary():
     os.system("python3 simulator_vary.py")
     return
 def plotter():
-    os.system("python3 plotter.py N")
+    os.system("python3 exit_menu_plot.py")
 
 window = tkinter.Tk()
 window.title("Main Menu")

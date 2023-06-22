@@ -81,6 +81,7 @@ def progress(rank, sends, recvs):
         for t in sends:
             copy, link = get_alpha_beta(rank, t["dst"])
             times[rank] += copy # add the copy time
+            # we add the link time here which represents time spent traveling network, in this case the link time is always 0
             update_message(rank, t["dst"], times[rank] + link)
         if (final_time < times[rank]):
             final_time = times[rank]
