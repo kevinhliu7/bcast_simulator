@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 import sys
+import utility
+import os
 
 # unfortunately, this part is kind of hard coded, can fix this later if necessary
 # hierarchical runtime
@@ -26,19 +28,23 @@ try:
     y_values = []
     x_values = []
     y_hierarchical = []
+    is_power_of_two = []
 
     skip_first = True
     for line in f:
         if (skip_first):
             skip_first = False
             continue
+        
         parameters = line.split()
         y_values.append(float(parameters[0]))
         parameter_idx = parameter_to_idx[parameter_to_look_at]
         x_values.append(float(parameters[parameter_idx]))
-        # print(parameters)
+
         if (plot_hierarchical[ph]):
             y_hierarchical.append(calculate_time_hierarchical(float(parameters[6]), float(parameters[5]), float(parameters[4]), float(parameters[3]), 0, int(parameters[1]), int(parameters[2])))
+            PPN_N = int(parameters[1]) * int(parameters[2])
+            is_power_of_two.append(utility.power_of_two(int(parameters[2])))
 
 
     plt.title("Time vs. " + parameter_to_look_at)
@@ -46,13 +52,16 @@ try:
     plt.ylabel("Time")
     plt.grid()
     if (plot_hierarchical[ph]):
+        #plt.plot(x_values, is_power_of_two, label="N*PPN pof2")
         plt.plot(x_values, y_hierarchical, label="Hierarchical")
-        plot = plt.plot(x_values, y_values, label = "Flat")
+        plot = plt.plot(x_values, y_values, label = "Hierarchical True")
         plt.legend()
     else:
         plot = plt.plot(x_values, y_values, label="Flat")
         plt.legend()
-    plt.savefig('plot.png')
+    plot_file_name = 'plot-N={}.png'.format(int(parameters[1]))
+    plt.savefig(plot_file_name)
+    os.system("mv {} $HOME/Pictures/hier_vs_hier_true_analysis_PPN=100".format(plot_file_name))
 
 
 except:
