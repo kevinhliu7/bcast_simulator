@@ -21,14 +21,13 @@ except:
     print("Missing Parameter Argument")
 try:
     f = open("simulator_output.txt", "r")
-
+    g = open("simulator_output2.txt", "r")
     parameter_to_idx = {"N":1, "PPN":2, "alpha1":3, "alpha2":4, "beta1":5, "beta2":6}
     plot_hierarchical = {"Yes":True, "No":False}
 
     y_values = []
     x_values = []
     y_hierarchical = []
-    is_power_of_two = []
 
     skip_first = True
     for line in f:
@@ -42,26 +41,34 @@ try:
         x_values.append(float(parameters[parameter_idx]))
 
         if (plot_hierarchical[ph]):
-            y_hierarchical.append(calculate_time_hierarchical(float(parameters[6]), float(parameters[5]), float(parameters[4]), float(parameters[3]), 0, int(parameters[1]), int(parameters[2])))
-            PPN_N = int(parameters[1]) * int(parameters[2])
-            is_power_of_two.append(utility.power_of_two(int(parameters[2])))
+            ...
+    skip_first = True
+    for line in g:
+        if (skip_first):
+            skip_first = False
+            continue
+        parameters = line.split()
+        y_hierarchical.append(float(parameters[0]))
 
 
-    plt.title("Time vs. " + parameter_to_look_at)
+    if (parameter_to_look_at == "PPN"):
+        parameter_to_look_at = "PPN (Processes Per Node)"
+    plt.title("Time (μs) vs. " + parameter_to_look_at)
     plt.xlabel(parameter_to_look_at)
-    plt.ylabel("Time")
+    plt.ylabel("Time (μs)")
     plt.grid()
+
     if (plot_hierarchical[ph]):
-        #plt.plot(x_values, is_power_of_two, label="N*PPN pof2")
         plt.plot(x_values, y_hierarchical, label="Hierarchical")
-        plot = plt.plot(x_values, y_values, label = "Hierarchical True")
+        plot = plt.plot(x_values, y_values, label = "Flat")
         plt.legend()
     else:
         plot = plt.plot(x_values, y_values, label="Flat")
         plt.legend()
-    plot_file_name = 'plot-N={}.png'.format(int(parameters[1]))
+    
+    plot_file_name = "plot.png"
     plt.savefig(plot_file_name)
-    os.system("mv {} $HOME/Pictures/hier_vs_hier_true_analysis_PPN=100".format(plot_file_name))
+    
 
 
 except:

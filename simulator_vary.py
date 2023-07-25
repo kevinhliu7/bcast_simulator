@@ -439,7 +439,9 @@ def vary_beta2():
             iter_lower = 0
         while (iter_lower <= iter_upper):
             command_to_execute = "python3 " + name_of_file + N + PPN + alpha1 + alpha2 + beta1 + str(iter_lower)
+            command_to_execute2 = "python3 " + "hierarchical_simulator.py" + N + PPN + alpha1 + alpha2 + beta1 + str(iter_lower)
             os.system(command_to_execute)
+            os.system(command_to_execute2)
             iter_lower += 1
         return
     def clean():

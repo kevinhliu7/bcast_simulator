@@ -110,10 +110,10 @@ def update_message(src, dst, time):
 
 def progress(rank, sends, recvs):
     global final_time
-    # print(times)
     while recvs: # while recvs is not empty
         if "time" in recvs[0]:
             copy, link = get_alpha_beta(recvs[0]["src"], rank)
+
             if (times[rank] < recvs[0]["time"]):
                 # print("ENTERED HERE")
                 # print(times[rank], " vs. ", recvs[0]["time"])
@@ -147,8 +147,6 @@ n_complete = 0
 while (n_complete < NP):
     for i in range(NP):
         n_complete += progress(i, sends[i], recvs[i])
-
-
-f = open("simulator_output.txt", "a")
+f = open("simulator_hier_output.txt", "a")
 f.write(str(final_time) + " " + str(N) + " " + str(PPN) + " " + str(alpha1) + " " + str(alpha2) + " " + str(betan1) + " " + str(betan2) + "\n")
 f.close()
