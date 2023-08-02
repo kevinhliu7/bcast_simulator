@@ -4,12 +4,9 @@ import math
 import sys
 import utility
 import os
+from pylab import *
 
-# unfortunately, this part is kind of hard coded, can fix this later if necessary
-# hierarchical runtime
 def calculate_time_hierarchical(B_inter, B_intra, a_inter, a_intra, m, N, PPN):
-    # print(math.ceil(math.log2(N)) * (B_inter * m + a_inter))
-    # return math.floor(math.log2(N))*(B_inter * m + a_inter) + math.floor(math.log2(PPN))*(B_intra * m + a_intra) # testing possible bug??
     return math.ceil(math.log2(N))*(B_inter * m + a_inter) + math.ceil(math.log2(PPN))*(B_intra * m + a_intra)
 
 ph = ""
@@ -20,8 +17,8 @@ try:
 except:
     print("Missing Parameter Argument")
 try:
-    f = open("simulator_output.txt", "r")
-    g = open("simulator_output2.txt", "r")
+    f = open("simulator_adapt_output.txt", "r")
+    g = open("simulator_hier_output.txt", "r")
     parameter_to_idx = {"N":1, "PPN":2, "alpha1":3, "alpha2":4, "beta1":5, "beta2":6}
     plot_hierarchical = {"Yes":True, "No":False}
 
@@ -53,21 +50,32 @@ try:
 
     if (parameter_to_look_at == "PPN"):
         parameter_to_look_at = "PPN (Processes Per Node)"
-    plt.title("Time (μs) vs. " + parameter_to_look_at)
-    plt.xlabel(parameter_to_look_at)
-    plt.ylabel("Time (μs)")
+    plt.title("Theoretical Time vs. " + parameter_to_look_at.split()[0], fontweight="bold")
+    plt.xlabel(parameter_to_look_at, fontweight="bold")
+    plt.ylabel("Theoretical Time (μs)", fontweight="bold")
     plt.grid()
 
     if (plot_hierarchical[ph]):
-        plt.plot(x_values, y_hierarchical, label="Hierarchical")
-        plot = plt.plot(x_values, y_values, label = "Flat")
+        rc('axes', linewidth=2)
+        ax = gca()
+        for tick in ax.xaxis.get_major_ticks():
+            tick.label1.set_fontweight('bold')
+        for tick in ax.yaxis.get_major_ticks():
+            tick.label1.set_fontweight('bold')
+        plt.plot(x_values, y_hierarchical, label="Hierarchical", linestyle = 'dashdot', color='black', marker=".")
+        plot = plt.plot(x_values, y_values, label = "Adaptive", color='black', marker=".")
         plt.legend()
     else:
-        plot = plt.plot(x_values, y_values, label="Flat")
-        plt.legend()
+        rc('axes', linewidth=2)
+        ax = gca()
+        for tick in ax.xaxis.get_major_ticks():
+            tick.label1.set_fontweight('bold')
+        for tick in ax.yaxis.get_major_ticks():
+            tick.label1.set_fontweight('bold')
+        plot = plt.plot(x_values, y_values, label="Flat", color = 'black', marker='.')
     
     plot_file_name = "plot.png"
-    plt.savefig(plot_file_name)
+    plt.savefig(plot_file_name, bbox_inches='tight')
     
 
 
